@@ -1,12 +1,10 @@
 'use strict';
 
+var angular = require('angular');
+
+
+
 angular.module('jobApp') 
-
-.controller('landingpageController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
-
-    
-
-}])
 
 .controller('mainController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
 
@@ -25,7 +23,6 @@ angular.module('jobApp')
     // FILTER RESULTS
     $scope.getOptionsFor = filterService.getOptionsFor;
     $scope.filterByProperties = filterService.filterByProperties;
-
 
 }])
 
@@ -54,7 +51,6 @@ angular.module('jobApp')
     };
 
     
-
     // DELETE
     $scope.deleteJob = function(id) {
         dataService.deleteJob(id).then(function() {
@@ -64,4 +60,3 @@ angular.module('jobApp')
 
 
 }]);
-

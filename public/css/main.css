@@ -8,7 +8,7 @@
 	width: 100%;
 	height: 600px;
 	text-align: center;
-	background-image: url("../img/39982a21.jpg");
+	background-image: url("../img/bkgrd1.jpg");
   	background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -25,6 +25,7 @@
 	color: rgb(255, 102, 0);
 	text-shadow: 1px 1px 1px #222;
 }
+
 
 #landing {
 	background-color: black;

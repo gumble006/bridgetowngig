@@ -1,5 +1,9 @@
 'use strict';
 
+var angular = require('angular');
+
+
+
 angular.module('jobApp')
 
 .service('filterService', function() {
