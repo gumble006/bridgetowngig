@@ -41,7 +41,7 @@ app.use(methodOverride("_method"));
 
 
 
-seedDB();
+// seedDB();
 
 app.use(indexRoutes);
 
