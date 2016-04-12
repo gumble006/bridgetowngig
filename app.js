@@ -13,6 +13,7 @@ var seedDB = require('./seeds');
 
 // DATABASE CONNECT
 // 'mongodb://localhost/jobboard'
+//mongodb://adamsgreg:password@ds017070.mlab.com:17070/bridgetowngigs
 
 mongoose.connect('mongodb://adamsgreg:password@ds017070.mlab.com:17070/bridgetowngigs', function(err) {
   if (err) {

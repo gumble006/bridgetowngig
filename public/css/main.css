@@ -109,8 +109,26 @@
 	font-weight: bold;
 }
 
-
+.btn.pull-right {
+	margin-left: 10px;
+}
 /*JOB SHOW*/
+pre{
+    /*white-space: pre-wrap;*/
+    word-break: normal;
+	word-wrap: break-word;
+    white-space: pre-wrap;
+    font-family: inherit;
+    background-color: inherit;
+    font-size: 1em;
+}
+
+textarea {
+	width: 100%;
+	height: auto;
+	resize:none;
+	
+}
 
 .btn-warning {
 	background-color: rgb(255, 102, 0);

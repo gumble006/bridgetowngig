@@ -45,45 +45,13 @@ router.post("/jobs", function(req, res){
 		} else {
 			console.log("newly created job!");
 			console.log(newAddition)
-			res.redirect("/app/index.html");
+			res.redirect("/jobs.html");
 		}
 	})
 });
 
-// router.post('/jobs', function(req, res) {
-//   var job = req.body;
-//   console.log(req.body);
-//   Job.create(job, function(err, job) {
-//     if (err) {
-//       return res.status(500).json({ err: err.message });
-//     }
-//     res.json({ 'job': job, message: 'job Created:' + job });
-//   });
-// });
-
-
 
 // UPDATE
-// router.put('/jobs/:id', function(req, res) {
-  	
-// 	var id = req.params.id;
-// 	var todo = req.body;
-// 	if (job && job._id !== id) {
-// 		return res.status(500).json({ err: "Ids don't match!" });
-// 	}
-	
-// 	Todo.findByIdAndUpdate(id, job, {new: true}, function(err, job) {
-// 	if (err) 
-// 	  return res.status(500).json({ err: err.message });
-// 	}
-	
-// 	res.json({ 'job': job, message: 'Todo Updated' });
-	
-// 	});
-
-// });
-
-
 
 router.put('/jobs/:id', function(req, res) {
   var id = req.params.id;
@@ -99,10 +67,6 @@ router.put('/jobs/:id', function(req, res) {
     res.json({ 'job': job, message: 'Job post updated' });
   });
 });
-
-
-
-
 
 
 // DESTROY
