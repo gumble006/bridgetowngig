@@ -3,8 +3,8 @@
 var angular = require('angular');
 
 
+angular.module('jobApp') 
 
-angular.module('jobApp')
 
 .service('filterService', function() {
     
@@ -47,8 +47,14 @@ angular.module('jobApp')
 
     var jobs;
 
+    var job; 
+    
     this.getJobs = function(callback){
         $http.get("/jobs").then(callback);
+    };
+
+    this.showJob = function(id, callback){
+        $http.get("/jobs/" + id).then(callback);
     };
 
 
@@ -66,6 +72,7 @@ angular.module('jobApp')
         }
         return $http.put('/jobs/' + job._id, job).then(function() {  });
     };
+
 
 })
 

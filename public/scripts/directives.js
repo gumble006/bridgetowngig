@@ -9,6 +9,5 @@ angular.module('jobApp')
     return {
         templateUrl: 'directives/addjobmodal.html',
         replace: true,
-        
     }
 });

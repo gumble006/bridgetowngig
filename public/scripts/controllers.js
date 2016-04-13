@@ -2,11 +2,12 @@
 
 var angular = require('angular');
 
-
-
 angular.module('jobApp') 
 
 .controller('mainController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
+
+
+    
 
     // Get list of jobs from database
     dataService.getJobs(function(response){
@@ -24,9 +25,49 @@ angular.module('jobApp')
     $scope.getOptionsFor = filterService.getOptionsFor;
     $scope.filterByProperties = filterService.filterByProperties;
 
+
+
+    // PAGINATION
+    $scope.itemsPerPage = 10;
+    $scope.currentPage = 0;
+    
+    $scope.prevPage = function() {
+        if ($scope.currentPage > 0) {
+          $scope.currentPage--;
+        }
+    };
+
+    $scope.prevPageDisabled = function() {
+        return $scope.currentPage === 0 ? "disabled" : "";
+    };
+
+    $scope.pageCount = function() {
+        return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
+    };
+
+    $scope.nextPage = function() {
+        if ($scope.currentPage < $scope.pageCount()) {
+          $scope.currentPage++;
+        }
+    };
+
+    $scope.nextPageDisabled = function() {
+        return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+    };
+
+
+
 }])
 
-.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams) {
+
+
+.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
+    
+    // $http.get("/jobs/" + $routeParams.id).then(function(response){
+    //     $scope.displayedJob = response.data;
+    //     dataService.jobs = response.data;
+    // });
+
     
     // Displays by ID
     var index = dataService.jobs.map(function(el) {
@@ -34,7 +75,6 @@ angular.module('jobApp')
     }).indexOf($routeParams.id);
 
     $scope.displayedJob = dataService.jobs[index];
-    
     
 
     // UPDATE
@@ -54,7 +94,7 @@ angular.module('jobApp')
     // DELETE
     $scope.deleteJob = function(id) {
         dataService.deleteJob(id).then(function() {
-            console.log('all done. ' + id )
+            console.log('Job post deleted.')
         });
     };
 

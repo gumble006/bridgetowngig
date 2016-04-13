@@ -2,10 +2,10 @@
 
 <a href="#/jobs" class="btn btn-primary btn-sm">« Back</a>
 
+
+
+<a href="#/" class="btn btn-danger btn-sm pull-right" ng-click="deleteJob(displayedJob._id)">Delete</a>
 <a href="#/jobs/{{displayedJob._id}}/edit" class="btn btn-warning btn-sm pull-right">Edit</a>
-
-<a href="#/" class="btn btn-danger btn-sm pull-right" ng-click="deleteJob(displayedJob._id)">Delete Post</a>
-
 <br><br>	
 <div class="panel panel-default">
 	<div class="panel-heading"><h3>{{displayedJob.jobtitle | capitalizeEach}}</h3></div>

@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 
-angular.module('jobApp') 
+angular.module('jobApp')  
 
 
 // ROUTES

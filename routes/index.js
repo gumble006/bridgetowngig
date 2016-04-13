@@ -16,6 +16,16 @@ router.get('/jobs', function(req, res) {
   });
 });
 
+//SHOW INDIV. JOB
+router.get("/jobs/:id", function(req, res){
+	Job.findById(req.params.id).exec(function(err, jobRecord) {
+		if(err) {
+			console.log(err)
+		} else {
+			res.json(jobRecord);
+		}
+	});	
+});
 
 // CREATE
 router.post("/jobs", function(req, res){
@@ -43,7 +53,7 @@ router.post("/jobs", function(req, res){
 		if (err) {
 			return res.status(500).json({ err: err.message });
 		} else {
-			console.log("newly created job!");
+			console.log("New job added!");
 			console.log(newAddition)
 			res.redirect("/jobs.html");
 		}
@@ -52,13 +62,13 @@ router.post("/jobs", function(req, res){
 
 
 // UPDATE
-
 router.put('/jobs/:id', function(req, res) {
   var id = req.params.id;
   var job = req.body;
   if (job && job._id !== id) {
     return res.status(500).json({ err: "Ids don't match!" });
   }
+  
   Job.findByIdAndUpdate(id, job, {new: true}, function(err, job) {
     if (err) {
       return res.status(500).json({ err: err.message });
