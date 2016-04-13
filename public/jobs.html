@@ -42,28 +42,28 @@
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='jobtype'" ng-init="filter[prop]={}">
                         <strong class="filtergroup">Type:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
                             <span ng-if="prop==='jobtype'" ng-repeat="opt in getOptionsFor(prop)">
-                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach }}<br>
+                                <input class="filterchkbx"type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach }}<br>
                             </span><br>          
                 </div>
 
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='zipcode'" ng-init="filter[prop]={}">
                         <strong class="filtergroup">Zip Code:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
                             <span ng-if="prop==='zipcode'" ng-repeat="opt in getOptionsFor(prop)">
-                                <input class="squaredThree" type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt}}<br>
+                                <input class="filterchkbx" type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt}}<br>
                             </span><br>          
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='location'" ng-init="filter[prop]={}">
                         <strong class="filtergroup">City:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
                             <span ng-if="prop==='location'" ng-repeat="opt in getOptionsFor(prop)">
-                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
+                                <input class="filterchkbx" type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
                             </span><br>          
                 </div>
 
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='geography'" ng-init="filter[prop]={}">
                         <strong class="filtergroup">Geographic Area:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
                             <span ng-if="prop==='geography'" ng-repeat="opt in getOptionsFor(prop)">
-                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
+                                <input class="filterchkbx" type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
                             </span><br>          
                 </div>
                 <hr>

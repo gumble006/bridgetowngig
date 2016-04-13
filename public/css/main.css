@@ -30,6 +30,59 @@
 	background-color: black;
 }
 
+#contact {
+	background-color: black;
+	color: rgb(15, 146, 205);
+	padding: 40px;
+}
+
+div#contact h5 {
+	text-transform: uppercase;
+}
+
+#contact img {
+	max-width: 40px;
+	padding: 5px;
+	border-radius: 50%;
+}
+
+
+#contact li {
+	list-style: none;
+	display: inline-block;
+	padding-left: 0;
+}
+
+#contact ul {
+	padding-left: 0;
+}
+
+.social {
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 29px;
+	height: 29px;
+}
+
+#twitter {
+	background-image: url("../img/twitter.png");
+}
+
+#facebook {
+	background-image: url("../img/facebook.png");
+}
+
+#twitter:hover {
+	background-image: url("../img/twitter-orange.png");
+}
+
+#facebook:hover {
+	background-image: url("../img/facebook-orange.png");
+}
+
+
+
 #copyright {
 	color: white;
 	margin: 0;
@@ -74,6 +127,18 @@
 
 
 /*FILTER SIDEBAR*/
+
+.filterchkbx[type=checkbox]
+{
+  /* enlarge checkboxes */
+  -ms-transform: scale(1.3); /* IE */
+  -moz-transform: scale(1.3); /* FF */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
+  -o-transform: scale(1.3); /* Opera */
+  padding: 5px;
+  margin: 7px 0 0;
+}
+
 .filtergroup  {
 	color: rgb(15, 146, 205);
 }
