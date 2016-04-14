@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="jobApp">
+<head>
+    <title>BridgetownGIG</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="//code.angularjs.org/1.5.3/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.5.3/angular-resource.min.js"></script>
+    <script src="app.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/controllers.js"></script>
+</head>
+ 
+<body>
+    <header>
+    	<nav class="navbar navbar-inverse">
+        	<div class="container">
+        		<div class="navbar-header">
+        			<a class="" href="/"><img id="logo" src="img/logo.png"></a>
+        		</div>
+
+        		<ul class="nav navbar-nav navbar-right">
+        			<li><a href="#/jobs"> Job Listings</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#txtModal"> Add a job</a></li>
+        		</ul>
+        	</div>
+    	</nav>
+    </header>
+
+    
+
+<div class="container filter" ng-controller="mainController">        
+    <div class="row">
+        <div class="col-xs-12 col-sm-2 filters">
+            <div class="row">
+                
+                <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='jobtype'" ng-init="filter[prop]={}">
+                        <strong class="filtergroup">Type:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
+                            <span ng-if="prop==='jobtype'" ng-repeat="opt in getOptionsFor(prop)">
+                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach }}<br>
+                            </span><br>          
+                </div>
+
+                <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='zipcode'" ng-init="filter[prop]={}">
+                        <strong class="filtergroup">Zip Code:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
+                            <span ng-if="prop==='zipcode'" ng-repeat="opt in getOptionsFor(prop)">
+                                <input class="squaredThree" type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt}}<br>
+                            </span><br>          
+                </div>
+
+                <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='location'" ng-init="filter[prop]={}">
+                        <strong class="filtergroup">City:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
+                            <span ng-if="prop==='location'" ng-repeat="opt in getOptionsFor(prop)">
+                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
+                            </span><br>          
+                </div>
+
+                <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='geography'" ng-init="filter[prop]={}">
+                        <strong class="filtergroup">Geographic Area:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
+                            <span ng-if="prop==='geography'" ng-repeat="opt in getOptionsFor(prop)">
+                                <input type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach}}<br>
+                            </span><br>          
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-7 col-md-7">
+            
+            <div ng-view> </div>         
+        </div>
+
+        <div class="hidden-xs col-xs-3 rightpanel">
+            <h4 class="filtergroup">Career Services</h4>
+            <h5>Resume Distribution</h5>
+            <p>Get your resume in the hands of hiring recruiters - fast!</p>
+            
+            <h5>Analyze Salaries</h5>
+            <p>What are you worth? Find out with our free Salary Wizard!</p>
+
+            <h5>Distribution</h5>
+            <p>Find out with our free Salary Wizard!</p>
+            
+            
+        </div>
+    </div>
+</div>    
+        
+
+<addjob-Modal></addjob-Modal>
+
+
+</body>
+</html>

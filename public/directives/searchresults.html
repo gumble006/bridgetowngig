@@ -1,0 +1,33 @@
+<div>
+<h2 class="filtergroup">Job Listings for Portland area</h2> 
+
+<h3>Search Results ({{filtered.length}} results)</h3>
+
+<div class="list-group" >
+	<div ng-repeat="p in filtered=(posts | filter:filterByProperties | limitTo: itemsPerPage)">
+	    <a href="#/job/{{ p._id }}" class="list-group-item">
+			<h4 class="list-group-item-heading">{{p.jobtitle | capitalizeEach}}</h4>
+			<p class="list-group-item-text">{{p.company| capitalizeEach}} - {{p.location| capitalizeEach}}, OR - ({{p.geography| capitalizeEach}} area)</p>
+			<p class="list-group-item-text">{{p.description | capitalizeFirst | limitTo: 110 }}...</p>
+		</a> 
+	</div>
+</div>    
+
+    
+<!-- <search-result job-object="job" ng-repeat="job in jobs | filter: colourFilter"></search-result> -->
+
+<!-- <div>
+	<ul class="pager">
+	  <li ng-class="prevPageDisabled()">
+	    <a href ng-click="prevPage()">« Prev</a>
+	  </li>
+	  <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+	    <a href="#">{{n+1}}</a>
+	  </li>
+	  <li ng-class="nextPageDisabled()">
+	    <a href ng-click="nextPage()">Next »</a>
+	  </li>
+	</ul>
+</div> -->
+
+</div>

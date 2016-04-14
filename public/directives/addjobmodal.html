@@ -1,0 +1,74 @@
+<div class="modal fade" id="txtModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title text-center filtergroup">Add a new job posting!</h4>
+        </div>
+        <div class="modal-body">
+          <form id="addjobform" action="/jobs" method="POST">
+
+            <div class="form-group">
+              <label for="jobtype">Job Type</label>
+                <select name="jobtype" form="addjobform">
+                  <option value="full-time">Full-time</option>
+                  <option value="part-time">Part-time</option>
+                  <option value="contract">Contract</option>
+                  <option value="temporary">Temporary</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Job Location (city)</label>
+                <select name="location" form="addjobform">
+                  <option value="portland">Portland</option>
+                  <option value="beaverton">Beaverton</option>
+                  <option value="hillsboro">Hillsboro</option>
+                  <option value="gresham">Gresham</option>
+                  <option value="vancouver">Vancouver, WA</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+              <label for="geography">Geographic area</label>
+                <select name="geography" form="addjobform">
+                  <option value="north">North</option>
+                  <option value="northeast">Northeast</option>
+                  <option value="northwest">Northwest</option>
+                  <option value="southeast">Southeast</option>
+                  <option value="southwest">Southwest</option>
+                  <option value="west suburbs">West Suburbs</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+              <label for="zipcode">Zip Code (5 digit)</label>
+              <input type="number" id="zipcode" name="zipcode" placeholder="Zip" min="97000" max="97999">
+            </div>
+
+            <div class="form-group">
+              <label for="jobtitle">Job Title</label>
+              <input type="text" class="form-control" name="jobtitle" id="jobtitle" placeholder="Job Title">
+            </div>
+            
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" class="form-control" name="company" id="company" placeholder="Company">
+            </div>
+
+            <div class="form-group">
+              <label for="textarea">Description</label>
+              <textarea form="addjobform" name="description" class="form-control" rows="4" placeholder="Description"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="contact">Contact Information</label>
+              <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact information">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>    

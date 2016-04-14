@@ -1,0 +1,140 @@
+/*LANDING PAGE*/
+
+#bkgrd {
+	margin-top: -20px; 
+	color: rgb(15, 146, 205);
+
+    text-align: center;
+	width: 100%;
+	height: 600px;
+	text-align: center;
+	background-image: url("../img/39982a21.jpg");
+  	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 120px 1rem 0 1rem;
+    font-size: 1.5em;
+}
+
+#bkgrd h1 {
+	font-size: 2em;
+	text-shadow: 1px 1px 1px #222;
+}
+
+#bkgrd p {
+	color: rgb(255, 102, 0);
+	text-shadow: 1px 1px 1px #222;
+}
+
+#landing {
+	background-color: black;
+}
+
+#copyright {
+	color: white;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+
+
+/*NAVIGATION*/
+
+#logo {
+	max-height: 55px;
+}
+
+.navbar-inverse {
+	padding: 5px;
+	border-radius: 0;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: rgb(255, 102, 0);
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+.navbar-nav>li>a {
+	padding-top: 10px;
+}
+
+.nav>li {
+	text-align: center;
+}
+
+.navbar-header img {
+		display: block;
+    	margin: 0 auto;
+}
+
+
+
+/*FILTER SIDEBAR*/
+.filtergroup  {
+	color: rgb(15, 146, 205);
+}
+
+.filters small>a, .filters a:visited {
+	color: gray;
+	text-decoration: blink;
+}
+
+.filters a:hover,  {
+	color: white;
+	text-decoration: none;
+}
+
+.filters a:visited {
+	text-decoration: none;
+}
+
+
+/*Search Results*/
+.list-group-item {
+	border: 1px solid rgba(255, 102, 0, 0.7);
+}
+
+.list-group-item:last-child {
+	margin-bottom: 3px;
+}
+
+
+/*RIGHT PANEL*/
+.rightpanel h5 {
+	font-weight: bold;
+}
+
+
+/*JOB SHOW*/
+
+.btn-warning {
+	background-color: rgb(255, 102, 0);
+	border-color: #C95100;
+}
+
+.btn-warning:hover {
+	background-color: #C95100;
+}
+
+.btn-primary {
+	background-color: rgb(15, 146, 205);
+}
+
+
+
+@media (min-width: 768px) { 
+	.nav>li {
+	text-align: left;
+	}
+
+	.navbar-nav>li>a {
+	padding-top: 25px;
+	}
+
+	
+
+}
