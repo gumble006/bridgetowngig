@@ -12,7 +12,9 @@ var seedDB = require('./seeds');
 
 
 // DATABASE CONNECT
-mongoose.connect('mongodb://localhost/jobboard', function(err) {
+// 'mongodb://localhost/jobboard'
+
+mongoose.connect('mongodb://adamsgreg:password@ds017070.mlab.com:17070/bridgetowngigs', function(err) {
   if (err) {
     console.log('Hey- Failed connecting to MongoDB');
   } else {
