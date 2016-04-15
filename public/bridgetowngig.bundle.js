@@ -258,6 +258,7 @@ webpackJsonp([0],[
 
 	    $scope.displayedJob = dataService.jobs[index];
 	    
+	    // console.log($scope.displayedJob.created);
 
 	    // UPDATE
 
@@ -272,6 +273,9 @@ webpackJsonp([0],[
 	        dataService.jobs[index] = angular.copy(editedJob);
 	    };
 
+	    $scope.displayDate = function (date){
+	        console.log(date.toDateString());
+	    };
 	    
 	    // DELETE
 	    $scope.deleteJob = function(id) {

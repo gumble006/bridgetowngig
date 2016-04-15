@@ -2,9 +2,6 @@
 
 var mongoose = require('mongoose');
 
-// todo.name
-// todo.completed
-
 var jobSchema = new mongoose.Schema({
 	jobtitle: String,
     company: String,
@@ -13,7 +10,8 @@ var jobSchema = new mongoose.Schema({
     description: String,
     jobtype: String,
     location: String,
-    contact: String
+    contact: String,
+    created: {type: Date, default: Date.now}
 });
 
 var model = mongoose.model('Job', jobSchema);

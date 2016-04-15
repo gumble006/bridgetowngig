@@ -76,6 +76,7 @@ angular.module('jobApp')
 
     $scope.displayedJob = dataService.jobs[index];
     
+    // console.log($scope.displayedJob.created);
 
     // UPDATE
 
@@ -90,6 +91,9 @@ angular.module('jobApp')
         dataService.jobs[index] = angular.copy(editedJob);
     };
 
+    $scope.displayDate = function (date){
+        console.log(date.toDateString());
+    };
     
     // DELETE
     $scope.deleteJob = function(id) {

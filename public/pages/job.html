@@ -3,7 +3,6 @@
 <a href="#/jobs" class="btn btn-primary btn-sm">« Back</a>
 
 
-
 <a href="#/" class="btn btn-danger btn-sm pull-right" ng-click="deleteJob(displayedJob._id)">Delete</a>
 <a href="#/jobs/{{displayedJob._id}}/edit" class="btn btn-warning btn-sm pull-right">Edit</a>
 <br><br>	
@@ -18,7 +17,9 @@
 		<h4><strong>Job Type:</strong> {{displayedJob.jobtype | capitalizeFirst}} </h4>
 
 		<h4><strong>Location:</strong> {{displayedJob.location | capitalizeEach}}, OR {{displayedJob.zipcode}} ({{displayedJob.geography | capitalizeEach}} area)</h4>
+		<h4><strong>Date Posted:</strong> {{displayedJob.created | date}}</h4>
 		<br>
+
 		
 		<h4><strong>Description:</strong></h4>
 		
