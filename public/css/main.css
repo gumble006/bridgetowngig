@@ -36,24 +36,24 @@
 	padding: 40px;
 }
 
-div#contact h5 {
+div#contactfooter h5 {
 	text-transform: uppercase;
 }
 
-#contact img {
+#contactfooter img {
 	max-width: 40px;
 	padding: 5px;
 	border-radius: 50%;
 }
 
 
-#contact li {
+#contactfooter li {
 	list-style: none;
 	display: inline-block;
 	padding-left: 0;
 }
 
-#contact ul {
+#contactfooter ul {
 	padding-left: 0;
 }
 
