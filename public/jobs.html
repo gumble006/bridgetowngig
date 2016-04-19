@@ -41,7 +41,7 @@
                 
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='jobtype'" ng-init="filter[prop]={}">
                         <strong class="filtergroup">Type:</strong><br /><small><a href="" ng-click="filter[prop]={}">Clear all</a></small><br>
-                            <span ng-if="prop==='jobtype'" ng-repeat="opt in getOptionsFor(prop)">
+                            <span ng-if="prop==='jobtype'" ng-repeat="opt in getOptionsFor(prop) | orderBy: customOrder">
                                 <input class="filterchkbx"type="checkbox" ng-model="filter[prop][opt]" />&nbsp;{{opt | capitalizeEach }}<br>
                             </span><br>          
                 </div>

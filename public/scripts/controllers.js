@@ -23,6 +23,17 @@ angular.module('jobApp')
     $scope.getOptionsFor = filterService.getOptionsFor;
     $scope.filterByProperties = filterService.filterByProperties;
 
+    // order filters for job type
+    $scope.customOrder = function (item) {
+        switch (item) {
+            case 'Full-time':
+                return 1;
+            case 'Part-time':
+                return 2;
+            case 'Temporary':
+                return 3;
+        }
+    };
 
 
     // PAGINATION
@@ -60,14 +71,15 @@ angular.module('jobApp')
 
 .controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
     
-    //GET/DISPLAY INDIVIDUAL JOB
+    //GET+DISPLAY INDIV. JOB
     $scope.job = {};
 
-    $http.get("/jobs/" + $routeParams.id).then(function(response){
+    dataService.showJob($routeParams.id, function(response){
         $scope.job = response.data;
         $scope.displayedJob = $scope.job;
         $scope.editjob = response.data;
-    });
+    });   
+
 
     // // Displays by ID
     // var index = dataService.jobs.map(function(el) {
@@ -75,7 +87,7 @@ angular.module('jobApp')
     // }).indexOf($routeParams.id);
 
     
-    // UPDATE
+    // EDIT JOB
     $scope.dynamicURL = "";
 
     $scope.updateJob = function(validform, editedJob) {

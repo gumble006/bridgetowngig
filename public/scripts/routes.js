@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
 
 var angular = require('angular');
 
@@ -27,6 +27,10 @@ angular.module('jobApp')
     .when('/jobs/:id/edit', {
         templateUrl: 'pages/editjob.html',
         controller: 'secondController'
+    })
+
+    .otherwise({
+        redirectTo: '/jobs'
     })
 
     

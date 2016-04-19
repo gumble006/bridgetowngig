@@ -27,7 +27,7 @@ webpackJsonp([0],[
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	'use strict'; 
 
 	var angular = __webpack_require__(1);
 
@@ -56,6 +56,10 @@ webpackJsonp([0],[
 	    .when('/jobs/:id/edit', {
 	        templateUrl: 'pages/editjob.html',
 	        controller: 'secondController'
+	    })
+
+	    .otherwise({
+	        redirectTo: '/jobs'
 	    })
 
 	    
@@ -133,11 +137,10 @@ webpackJsonp([0],[
 
 	    var jobs;
 
-	    var job; 
-	    
 	    this.getJobs = function(callback){
 	        $http.get("/jobs").then(callback);
 	    };
+
 
 	    this.showJob = function(id, callback){
 	        $http.get("/jobs/" + id).then(callback);
@@ -150,6 +153,7 @@ webpackJsonp([0],[
 	        }
 	        return $http.delete('/jobs/' + id).then(function() {  });
 	    };
+
 
 	    this.updateJob = function(job) {
 	        
@@ -206,6 +210,17 @@ webpackJsonp([0],[
 	    $scope.getOptionsFor = filterService.getOptionsFor;
 	    $scope.filterByProperties = filterService.filterByProperties;
 
+	    // order filters for job type
+	    $scope.customOrder = function (item) {
+	        switch (item) {
+	            case 'Full-time':
+	                return 1;
+	            case 'Part-time':
+	                return 2;
+	            case 'Temporary':
+	                return 3;
+	        }
+	    };
 
 
 	    // PAGINATION
@@ -243,14 +258,15 @@ webpackJsonp([0],[
 
 	.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
 	    
-	    //GET/DISPLAY INDIVIDUAL JOB
+	    //GET+DISPLAY INDIV. JOB
 	    $scope.job = {};
 
-	    $http.get("/jobs/" + $routeParams.id).then(function(response){
+	    dataService.showJob($routeParams.id, function(response){
 	        $scope.job = response.data;
 	        $scope.displayedJob = $scope.job;
 	        $scope.editjob = response.data;
-	    });
+	    });   
+
 
 	    // // Displays by ID
 	    // var index = dataService.jobs.map(function(el) {
@@ -258,7 +274,7 @@ webpackJsonp([0],[
 	    // }).indexOf($routeParams.id);
 
 	    
-	    // UPDATE
+	    // EDIT JOB
 	    $scope.dynamicURL = "";
 
 	    $scope.updateJob = function(validform, editedJob) {

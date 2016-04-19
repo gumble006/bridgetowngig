@@ -47,11 +47,10 @@ angular.module('jobApp')
 
     var jobs;
 
-    var job; 
-    
     this.getJobs = function(callback){
         $http.get("/jobs").then(callback);
     };
+
 
     this.showJob = function(id, callback){
         $http.get("/jobs/" + id).then(callback);
@@ -64,6 +63,7 @@ angular.module('jobApp')
         }
         return $http.delete('/jobs/' + id).then(function() {  });
     };
+
 
     this.updateJob = function(job) {
         
