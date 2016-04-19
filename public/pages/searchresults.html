@@ -3,7 +3,7 @@
 <h3>Search Results ({{filtered.length}} results)</h3>
 
 <div class="list-group" >
-	<div ng-repeat="p in filtered=(posts | filter:filterByProperties | limitTo: itemsPerPage)">
+	<div ng-repeat="p in filtered=(posts | filter:filterByProperties | limitTo: itemsPerPage | orderBy: '-created')">
 	    <a href="#/jobs/{{ p._id }}" class="list-group-item">
 			<h4 class="list-group-item-heading">{{p.jobtitle | capitalizeEach}}</h4>
 			<p class="list-group-item-text">{{p.company| capitalizeEach}} - {{p.location| capitalizeEach}}, OR - ({{p.geography| capitalizeEach}} area)</p>

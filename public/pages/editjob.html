@@ -1,21 +1,22 @@
 <a href="#/jobs/{{displayedJob._id}}" class="btn btn-primary btn-sm" ng-click="cancelEdit()">« Cancel Edit</a><br><br>
-<form id="editjobform">
+<form name="editjobform" novalidate>
 
 <div class="panel panel-default">
 
 		<div class="panel-heading">
 			<h4><label for="jobtitle">Job Title:</label> 
-				<input type="text" class="form-control" name="jobtitle" ng-model="editjob.jobtitle" id="jobtitle">
+				<input type="text" class="form-control" name="jobtitle" ng-model="editjob.jobtitle" required>
 			</h4>
 		</div>
 		
 		<div class="panel-body">
 			<h4><label for="company"><strong>Company:</strong></label>
-	              <input type="text" class="form-control" name="company" ng-model="editjob.company" id="company">
+	              <input type="text" class="form-control" name="company" ng-model="editjob.company" id="company" required>
 	        </h4>
+	        <br>
 	        
 	        <p><label for="jobtype">Job Type:</label>
-                <select name="jobtype" ng-model="editjob.jobtype" form="editjobform">
+                <select name="jobtype" ng-model="editjob.jobtype" form="editjobform" required>
                   <option value="Full-time">Full-time</option>
                   <option value="Part-time">Part-time</option>
                   <option value="Contract">Contract</option>
@@ -24,7 +25,7 @@
             </p>
 
 			<p><label for="location"><strong>Job Location (city):</strong></label>
-	            <select name="location" ng-model="editjob.location" form="editjobform">
+	            <select name="location" ng-model="editjob.location" form="editjobform" required>
 	              <option value="Portland" >Portland</option>
 	              <option value="Beaverton" >Beaverton</option>
 	              <option value="Hillsboro">Hillsboro</option>
@@ -34,7 +35,7 @@
 			</p>
 	        
 	        <p><label for="geography">Geographic area:</label>
-	            <select name="geography" form="editjobform" ng-model="editjob.geography">
+	            <select name="geography" form="editjobform" ng-model="editjob.geography" required>
 	              <option value="North">North</option>
 	              <option value="Northeast">Northeast</option>
 	              <option value="Northwest">Northwest</option>
@@ -45,15 +46,18 @@
 	        </p>
 
 	        <label for="zipcode">Zip Code (5 digit):</label>
-				<input type="number" id="zipcode" name="zipcode" ng-model="editjob.zipcode" min="97000" max="97999">
-	        
+				<input type="number" id="zipcode" name="zipcode" ng-model="editjob.zipcode" min="97000" max="97999" required>
+	        <br>
+
 	        <h4><label for="textarea">Description:</label></h4>
-	              <textarea form="editjobform" name="description" class="form-control" rows="8" ng-model="editjob.description" placeholder="Description"></textarea>
+	              <textarea form="editjobform" name="description" class="form-control" rows="8" ng-model="editjob.description" placeholder="Description" required></textarea>
+	              <br>
 
 			<label for="contact">Contact Information:</label>
-	              <input type="text" class="form-control" id="contact" ng-model="editjob.contact" name="contact">
+	              <input type="text" class="form-control" id="contact" ng-model="editjob.contact" name="contact" required>
 			<br>
-			<a href="#/jobs/{{displayedJob._id}}" class="btn btn-primary" ng-click="updateJob(editjob)">Update</a>
+			
+			<a ng-href="{{dynamicURL}}" class="btn btn-primary" ng-disabled="editjobform.$invalid" ng-click="updateJob(editjobform.$valid, editjob)">Update</a>
 	        
 	        
         </div>

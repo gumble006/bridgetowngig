@@ -4,7 +4,7 @@ var webpack = require('webpack'),
 module.exports = {
     context: __dirname + '/public',
     entry: {
-        app: './app.js',
+        app: './app.js', 
         vendor: ['angular', 'angular-resource', 'angular-route']  
     },
     output: {

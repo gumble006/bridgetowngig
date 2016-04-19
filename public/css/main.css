@@ -1,5 +1,7 @@
 /*LANDING PAGE*/
 
+
+
 #bkgrd {
 	margin-top: -20px; 
 	color: rgb(15, 146, 205);
@@ -58,7 +60,6 @@ div#contactfooter h5 {
 }
 
 .social {
-	
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 29px;
@@ -80,8 +81,6 @@ div#contactfooter h5 {
 #facebook:hover {
 	background-image: url("../img/facebook-orange.png");
 }
-
-
 
 #copyright {
 	color: white;
@@ -128,8 +127,7 @@ div#contactfooter h5 {
 
 /*FILTER SIDEBAR*/
 
-.filterchkbx[type=checkbox]
-{
+.filterchkbx[type=checkbox] {
   /* enlarge checkboxes */
   -ms-transform: scale(1.2); /* IE */
   -moz-transform: scale(1.2); /* FF */
@@ -176,9 +174,9 @@ div#contactfooter h5 {
 .btn.pull-right {
 	margin-left: 10px;
 }
+
 /*JOB SHOW*/
 pre{
-    /*white-space: pre-wrap;*/
     word-break: normal;
 	word-wrap: break-word;
     white-space: pre-wrap;
@@ -191,7 +189,6 @@ textarea {
 	width: 100%;
 	height: auto;
 	resize:none;
-	
 }
 
 .btn-warning {
@@ -207,7 +204,13 @@ textarea {
 	background-color: rgb(15, 146, 205);
 }
 
+form .ng-invalid:not(.ng-untouched) {
+	border: 2px solid #fa787e;
+}
 
+
+
+// MEDIA QUERIES
 
 @media (min-width: 768px) { 
 	.nav>li {

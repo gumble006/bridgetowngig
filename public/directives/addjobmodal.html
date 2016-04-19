@@ -1,4 +1,4 @@
-<div class="modal fade" id="txtModal">
+<div class="modal" id="txtModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -6,11 +6,11 @@
           <h4 class="text-center filtergroup">Add a new job post</h4>
         </div>
         <div class="modal-body">
-          <form id="addjobform" action="/jobs" method="POST">
+          <form id="addjobform" name="addjobform" action="/jobs" method="POST" novalidate ng-init="newjob">
 
             <div class="form-group">
               <label for="jobtype">Job Type:</label>
-                <select name="jobtype" form="addjobform">
+                <select name="jobtype" form="addjobform" ng-model="newjob.jobtype" required>
                   <option value="full-time">Full-time</option>
                   <option value="part-time">Part-time</option>
                   <option value="contract">Contract</option>
@@ -20,7 +20,7 @@
 
             <div class="form-group">
               <label for="location">Job Location (city):</label>
-                <select name="location" form="addjobform">
+                <select name="location" form="addjobform" ng-model="newjob.location" required>
                   <option value="portland">Portland</option>
                   <option value="beaverton">Beaverton</option>
                   <option value="hillsboro">Hillsboro</option>
@@ -31,7 +31,7 @@
 
             <div class="form-group">
               <label for="geography">Geographic area:</label>
-                <select name="geography" form="addjobform">
+                <select name="geography" form="addjobform" ng-model="newjob.geography" required>
                   <option value="north">North</option>
                   <option value="northeast">Northeast</option>
                   <option value="northwest">Northwest</option>
@@ -43,30 +43,31 @@
 
             <div class="form-group">
               <label for="zipcode">Zip Code (5 digit):</label>
-              <input type="number" id="zipcode" name="zipcode" placeholder="Zip" min="97000" max="97999">
+              <input type="number" id="zipcode" name="zipcode" placeholder="Zip" min="97000" max="97999" ng-model="newjob.zipcode" required>
             </div>
 
             <div class="form-group">
               <label for="jobtitle">Job Title:</label>
-              <input type="text" class="form-control" name="jobtitle" id="jobtitle" placeholder="Job Title">
+              <input type="text" class="form-control" ng-model="newjob.jobtitle" name="jobtitle" id="jobtitle"  required>
             </div>
             
             <div class="form-group">
               <label for="company">Company:</label>
-              <input type="text" class="form-control" name="company" id="company" placeholder="Company">
+              <input type="text" class="form-control" name="company" id="company" placeholder="Company" ng-model="newjob.company" required>
             </div>
 
             <div class="form-group">
               <label for="textarea">Description:</label>
-              <textarea form="addjobform" name="description" class="form-control" rows="8" placeholder="Description"></textarea>
+              <textarea form="addjobform" name="description" class="form-control" rows="8" placeholder="Description" ng-model="newjob.description" required></textarea>
             </div>
 
             <div class="form-group">
               <label for="contact">Contact Information:</label>
-              <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact information">
+              <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact information" ng-model="newjob.contact" required>
             </div>
+
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="submit" value="Submit" ng-disabled="addjobform.$invalid" class="btn btn-primary">
           </form>
         </div>
       </div>

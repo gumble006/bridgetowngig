@@ -7,8 +7,6 @@ angular.module('jobApp')
 .controller('mainController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
 
 
-    
-
     // Get list of jobs from database
     dataService.getJobs(function(response){
         $scope.posts= response.data;
@@ -41,8 +39,8 @@ angular.module('jobApp')
         return $scope.currentPage === 0 ? "disabled" : "";
     };
 
-    $scope.pageCount = function() {
-        return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
+    $scope.pageCount = function() { 
+        // return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
     };
 
     $scope.nextPage = function() {
@@ -56,51 +54,46 @@ angular.module('jobApp')
     };
 
 
-
 }])
 
 
 
 .controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
     
-    // $http.get("/jobs/" + $routeParams.id).then(function(response){
-    //     $scope.displayedJob = response.data;
-    //     dataService.jobs = response.data;
-    // });
+    //GET/DISPLAY INDIVIDUAL JOB
+    $scope.job = {};
+
+    $http.get("/jobs/" + $routeParams.id).then(function(response){
+        $scope.job = response.data;
+        $scope.displayedJob = $scope.job;
+        $scope.editjob = response.data;
+    });
+
+    // // Displays by ID
+    // var index = dataService.jobs.map(function(el) {
+    //     return el._id;
+    // }).indexOf($routeParams.id);
 
     
-    // Displays by ID
-    var index = dataService.jobs.map(function(el) {
-        return el._id;
-    }).indexOf($routeParams.id);
-
-    $scope.displayedJob = dataService.jobs[index];
-    
-    // console.log($scope.displayedJob.created);
-
     // UPDATE
+    $scope.dynamicURL = "";
 
-    $scope.editjob = angular.copy(dataService.jobs[index]);
-
-    $scope.updateJob = function(editedJob) {
+    $scope.updateJob = function(validform, editedJob) {
         
-        dataService.updateJob(editedJob).then(function() {
-            console.log('Job post updated.')
-        });
-
-        dataService.jobs[index] = angular.copy(editedJob);
+        if (validform) {
+            $scope.dynamicURL = "#/jobs/" + $scope.displayedJob._id;
+           
+            dataService.updateJob(editedJob).then(function() {
+                console.log('Job post updated.')
+            }); 
+        } else return
     };
 
-    $scope.displayDate = function (date){
-        console.log(date.toDateString());
-    };
-    
     // DELETE
     $scope.deleteJob = function(id) {
         dataService.deleteJob(id).then(function() {
             console.log('Job post deleted.')
         });
     };
-
 
 }]);
