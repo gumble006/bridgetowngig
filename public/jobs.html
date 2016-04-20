@@ -34,9 +34,13 @@
 
     
 
-<div class="container filter" ng-controller="mainController">        
+<div class="container filter" ng-controller="mainController" ng-init="searchquery">        
     <div class="row">
         <div class="col-xs-12 col-sm-2 filters">
+            <strong class="filtergroup">Search:</strong><br />
+            <small><a href="" ng-click="searchquery=''">Clear</a></small>
+            <input type="text" id="searchbox" ng-model="searchquery"></input>
+            <br><br>
             <div class="row">
                 
                 <div class="col-xs-6 col-sm-12" ng-repeat="(prop, ignoredValue) in posts[0]" ng-if="prop==='jobtype'" ng-init="filter[prop]={}">
@@ -71,7 +75,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-7 col-md-7">
-            
+            <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash);"></flash-message>
             <div ng-view> </div>         
         </div>
 
@@ -85,7 +89,6 @@
 
             <h5>Distribution</h5>
             <p>Find out with our free Salary Wizard!</p>
-            
             
         </div>
     </div>

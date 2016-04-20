@@ -7,7 +7,7 @@ webpackJsonp([0],[
 	var angular = __webpack_require__(1);
 
 
-	var jobApp = angular.module('jobApp', ['ngRoute', 'ngResource']); 
+	var jobApp = angular.module('jobApp', ['ngRoute', 'ngResource', 'ngFlash']); 
 
 	__webpack_require__(3);
 	__webpack_require__(4);
@@ -81,6 +81,7 @@ webpackJsonp([0],[
 	    	restrict: 'E',
 	        templateUrl: 'directives/addjobmodal.html',
 	        replace: true,
+	        controller: 'mainController'
 	    }
 	});
 
@@ -98,6 +99,7 @@ webpackJsonp([0],[
 
 	.service('filterService', function() {
 	    
+	    // this.searchquery = "";
 	    this.filter = {};
 	    
 	    var that = this;
@@ -135,17 +137,29 @@ webpackJsonp([0],[
 
 	.service('dataService', function($http, $q) {
 
-	    var jobs;
+	    this.jobs;
 
 	    this.getJobs = function(callback){
 	        $http.get("/jobs").then(callback);
 	    };
 
-
 	    this.showJob = function(id, callback){
 	        $http.get("/jobs/" + id).then(callback);
 	    };
 
+	    this.addJob = function(newJob) {
+	        if (!newJob) {
+	          return $q.resolve();
+	        }
+	        return $http.post('/jobs', newJob)
+	    };
+
+	    this.updateJob = function(job) {
+	        if (!job._id) {
+	          return $q.resolve();
+	        }
+	        return $http.put('/jobs/' + job._id, job).then(function() {  });
+	    };
 
 	    this.deleteJob = function(id) {
 	        if (!id) {
@@ -154,22 +168,12 @@ webpackJsonp([0],[
 	        return $http.delete('/jobs/' + id).then(function() {  });
 	    };
 
-
-	    this.updateJob = function(job) {
-	        
-	        if (!job._id) {
-	          return $q.resolve();
-	        }
-	        return $http.put('/jobs/' + job._id, job).then(function() {  });
-	    };
-
-
 	})
 
 	.filter('capitalizeFirst', function () {
 	    return function (str) {
 	        str = str || '';
-	        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+	        return str.substring(0, 1).toUpperCase() + str.substring(1);
 	    };
 	})
 
@@ -191,7 +195,7 @@ webpackJsonp([0],[
 
 	angular.module('jobApp') 
 
-	.controller('mainController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
+	.controller('mainController', ['$scope', '$http', '$log', '$route', 'filterService', 'dataService', 'Flash', function($scope, $http, $log, $route, filterService, dataService, Flash) {
 
 
 	    // Get list of jobs from database
@@ -202,10 +206,12 @@ webpackJsonp([0],[
 	 
 	    // Link with sidebar filters
 	    $scope.filter = filterService.filter;
-	    $scope.$watch('filter', function() {
-	        filterService.filter = $scope.filter; 
-	    });
+	    
+	    // $scope.$watch('filter', function() {
+	    //     filterService.filter = $scope.filter; 
+	    // });
 
+	    
 	    // FILTER RESULTS
 	    $scope.getOptionsFor = filterService.getOptionsFor;
 	    $scope.filterByProperties = filterService.filterByProperties;
@@ -219,9 +225,25 @@ webpackJsonp([0],[
 	                return 2;
 	            case 'Temporary':
 	                return 3;
+	            case 'Contract':
+	                return 4;
 	        }
 	    };
 
+	    // ADD JOB MODAL
+	    $scope.successAddAlert = function () {
+	        var message = '<strong>Success!</strong> New job post created.';
+	        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+	    };
+
+	    $scope.addJob = function(validform, newJob) {
+	        if (validform) { 
+	            dataService.addJob(newJob).then(function() {
+	                $scope.successAddAlert();
+	                $route.reload();
+	            }); 
+	        } else return
+	    };
 
 	    // PAGINATION
 	    $scope.itemsPerPage = 10;
@@ -238,7 +260,7 @@ webpackJsonp([0],[
 	    };
 
 	    $scope.pageCount = function() { 
-	        // return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
+	        return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
 	    };
 
 	    $scope.nextPage = function() {
@@ -256,7 +278,7 @@ webpackJsonp([0],[
 
 
 
-	.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
+	.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', 'Flash', function($scope, $http, $log, filterService, dataService, $routeParams, Flash) {
 	    
 	    //GET+DISPLAY INDIV. JOB
 	    $scope.job = {};
@@ -273,25 +295,36 @@ webpackJsonp([0],[
 	    //     return el._id;
 	    // }).indexOf($routeParams.id);
 
-	    
+
 	    // EDIT JOB
+
 	    $scope.dynamicURL = "";
+	    
+	    $scope.successEditAlert = function () {
+	        var message = '<strong>Success!</strong> Job post updated.';
+	        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+	    }
 
 	    $scope.updateJob = function(validform, editedJob) {
-	        
 	        if (validform) {
-	            $scope.dynamicURL = "#/jobs/" + $scope.displayedJob._id;
-	           
+	            $scope.dynamicURL = "#/jobs/" + $scope.editjob._id;
+
 	            dataService.updateJob(editedJob).then(function() {
-	                console.log('Job post updated.')
+	                $scope.successEditAlert();
 	            }); 
 	        } else return
 	    };
 
+
 	    // DELETE
+	    $scope.successDeleteAlert = function () {
+	        var message = '<strong>Success!</strong> Job post deleted.';
+	        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+	    }
+
 	    $scope.deleteJob = function(id) {
 	        dataService.deleteJob(id).then(function() {
-	            console.log('Job post deleted.')
+	            $scope.successDeleteAlert();
 	        });
 	    };
 

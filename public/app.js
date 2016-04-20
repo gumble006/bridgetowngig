@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 
-var jobApp = angular.module('jobApp', ['ngRoute', 'ngResource']); 
+var jobApp = angular.module('jobApp', ['ngRoute', 'ngResource', 'ngFlash']); 
 
 require('./scripts/routes.js');
 require('./scripts/directives.js');

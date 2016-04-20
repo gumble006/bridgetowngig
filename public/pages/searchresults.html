@@ -3,10 +3,11 @@
 <h3>Search Results ({{filtered.length}} results)</h3>
 
 <div class="list-group" >
-	<div ng-repeat="p in filtered=(posts | filter:filterByProperties | limitTo: itemsPerPage | orderBy: '-created')">
+	<div ng-repeat="p in filtered=(posts | filter:filterByProperties | filter:searchquery | limitTo: itemsPerPage | orderBy: '-created')">
 	    <a href="#/jobs/{{ p._id }}" class="list-group-item">
+	    	<p class="pull-right">{{p.created | date: 'shortDate'}}</p>
 			<h4 class="list-group-item-heading">{{p.jobtitle | capitalizeEach}}</h4>
-			<p class="list-group-item-text">{{p.company| capitalizeEach}} - {{p.location| capitalizeEach}}, OR - ({{p.geography| capitalizeEach}} area)</p>
+			<p class="list-group-item-text">{{p.company| capitalizeFirst}} - {{p.location| capitalizeEach}}, OR - ({{p.geography| capitalizeEach}} area)</p>
 			<p class="list-group-item-text">{{p.description | capitalizeFirst | limitTo: 130 }}...</p>
 		</a> 
 	</div>

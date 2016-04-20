@@ -5,7 +5,7 @@ module.exports = {
     context: __dirname + '/public',
     entry: {
         app: './app.js', 
-        vendor: ['angular', 'angular-resource', 'angular-route']  
+        vendor: ['angular', 'angular-resource', 'angular-route', 'angular-flash-alert']  
     },
     output: {
         path: __dirname + '/public',

@@ -110,10 +110,6 @@ div#contactfooter h5 {
 	font-size: 1.1em;
 }
 
-.navbar-nav>li>a {
-	padding-top: 10px;
-}
-
 .nav>li {
 	text-align: center;
 }
@@ -126,6 +122,11 @@ div#contactfooter h5 {
 
 
 /*FILTER SIDEBAR*/
+
+#searchbox {
+	max-width: 100%;
+	margin-top: 8px;
+}
 
 .filterchkbx[type=checkbox] {
   /* enlarge checkboxes */
@@ -143,7 +144,10 @@ div#contactfooter h5 {
 
 .filters small>a, .filters a:visited {
 	color: gray;
+	border: 1px solid rgba(120,120,120,0.1);
+	padding: 2px;
 	text-decoration: blink;
+	margin-left: 10px;
 }
 
 .filters a:hover,  {

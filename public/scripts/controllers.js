@@ -4,7 +4,7 @@ var angular = require('angular');
 
 angular.module('jobApp') 
 
-.controller('mainController', ['$scope', '$http', '$log', 'filterService', 'dataService', function($scope, $http, $log, filterService, dataService) {
+.controller('mainController', ['$scope', '$http', '$log', '$route', 'filterService', 'dataService', 'Flash', function($scope, $http, $log, $route, filterService, dataService, Flash) {
 
 
     // Get list of jobs from database
@@ -15,10 +15,12 @@ angular.module('jobApp')
  
     // Link with sidebar filters
     $scope.filter = filterService.filter;
-    $scope.$watch('filter', function() {
-        filterService.filter = $scope.filter; 
-    });
+    
+    // $scope.$watch('filter', function() {
+    //     filterService.filter = $scope.filter; 
+    // });
 
+    
     // FILTER RESULTS
     $scope.getOptionsFor = filterService.getOptionsFor;
     $scope.filterByProperties = filterService.filterByProperties;
@@ -32,9 +34,25 @@ angular.module('jobApp')
                 return 2;
             case 'Temporary':
                 return 3;
+            case 'Contract':
+                return 4;
         }
     };
 
+    // ADD JOB MODAL
+    $scope.successAddAlert = function () {
+        var message = '<strong>Success!</strong> New job post created.';
+        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+    };
+
+    $scope.addJob = function(validform, newJob) {
+        if (validform) { 
+            dataService.addJob(newJob).then(function() {
+                $scope.successAddAlert();
+                $route.reload();
+            }); 
+        } else return
+    };
 
     // PAGINATION
     $scope.itemsPerPage = 10;
@@ -51,7 +69,7 @@ angular.module('jobApp')
     };
 
     $scope.pageCount = function() { 
-        // return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
+        return Math.ceil($scope.posts.length/$scope.itemsPerPage)-1;
     };
 
     $scope.nextPage = function() {
@@ -69,7 +87,7 @@ angular.module('jobApp')
 
 
 
-.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', function($scope, $http, $log, filterService, dataService, $routeParams, Jobs) {
+.controller('secondController', ['$scope', '$http', '$log', 'filterService', 'dataService', '$routeParams', 'Flash', function($scope, $http, $log, filterService, dataService, $routeParams, Flash) {
     
     //GET+DISPLAY INDIV. JOB
     $scope.job = {};
@@ -86,25 +104,36 @@ angular.module('jobApp')
     //     return el._id;
     // }).indexOf($routeParams.id);
 
-    
+
     // EDIT JOB
+
     $scope.dynamicURL = "";
+    
+    $scope.successEditAlert = function () {
+        var message = '<strong>Success!</strong> Job post updated.';
+        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+    }
 
     $scope.updateJob = function(validform, editedJob) {
-        
         if (validform) {
-            $scope.dynamicURL = "#/jobs/" + $scope.displayedJob._id;
-           
+            $scope.dynamicURL = "#/jobs/" + $scope.editjob._id;
+
             dataService.updateJob(editedJob).then(function() {
-                console.log('Job post updated.')
+                $scope.successEditAlert();
             }); 
         } else return
     };
 
+
     // DELETE
+    $scope.successDeleteAlert = function () {
+        var message = '<strong>Success!</strong> Job post deleted.';
+        var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
+    }
+
     $scope.deleteJob = function(id) {
         dataService.deleteJob(id).then(function() {
-            console.log('Job post deleted.')
+            $scope.successDeleteAlert();
         });
     };
 

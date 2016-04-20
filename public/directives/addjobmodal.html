@@ -11,33 +11,33 @@
             <div class="form-group">
               <label for="jobtype">Job Type:</label>
                 <select name="jobtype" form="addjobform" ng-model="newjob.jobtype" required>
-                  <option value="full-time">Full-time</option>
-                  <option value="part-time">Part-time</option>
-                  <option value="contract">Contract</option>
-                  <option value="temporary">Temporary</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Part-time">Part-time</option>
+                  <option value="Contract">Contract</option>
+                  <option value="Temporary">Temporary</option>
                 </select>
             </div>
 
             <div class="form-group">
               <label for="location">Job Location (city):</label>
                 <select name="location" form="addjobform" ng-model="newjob.location" required>
-                  <option value="portland">Portland</option>
-                  <option value="beaverton">Beaverton</option>
-                  <option value="hillsboro">Hillsboro</option>
-                  <option value="gresham">Gresham</option>
-                  <option value="vancouver">Vancouver, WA</option>
+                  <option value="Portland" >Portland</option>
+                <option value="Beaverton" >Beaverton</option>
+                <option value="Hillsboro">Hillsboro</option>
+                <option value="Gresham">Gresham</option>
+                <option value="Vancouver, WA">Vancouver, WA</option>
                 </select>
             </div>
 
             <div class="form-group">
               <label for="geography">Geographic area:</label>
                 <select name="geography" form="addjobform" ng-model="newjob.geography" required>
-                  <option value="north">North</option>
-                  <option value="northeast">Northeast</option>
-                  <option value="northwest">Northwest</option>
-                  <option value="southeast">Southeast</option>
-                  <option value="southwest">Southwest</option>
-                  <option value="west suburbs">West Suburbs</option>
+                  <option value="North">North</option>
+                  <option value="Northeast">Northeast</option>
+                  <option value="Northwest">Northwest</option>
+                  <option value="Southeast">Southeast</option>
+                  <option value="Southwest">Southwest</option>
+                  <option value="West Suburbs">West Suburbs</option>
                 </select>
             </div>
 
@@ -66,8 +66,7 @@
               <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact information" ng-model="newjob.contact" required>
             </div>
 
-            
-            <input type="submit" value="Submit" ng-disabled="addjobform.$invalid" class="btn btn-primary">
+            <a href="#/" class="btn btn-primary" data-dismiss="modal" ng-disabled="addjobform.$invalid" ng-click="addJob(addjobform.$valid, newjob)">Add job</a>
           </form>
         </div>
       </div>

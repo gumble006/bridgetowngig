@@ -8,6 +8,7 @@ angular.module('jobApp')
 
 .service('filterService', function() {
     
+    // this.searchquery = "";
     this.filter = {};
     
     var that = this;
@@ -45,17 +46,29 @@ angular.module('jobApp')
 
 .service('dataService', function($http, $q) {
 
-    var jobs;
+    this.jobs;
 
     this.getJobs = function(callback){
         $http.get("/jobs").then(callback);
     };
 
-
     this.showJob = function(id, callback){
         $http.get("/jobs/" + id).then(callback);
     };
 
+    this.addJob = function(newJob) {
+        if (!newJob) {
+          return $q.resolve();
+        }
+        return $http.post('/jobs', newJob)
+    };
+
+    this.updateJob = function(job) {
+        if (!job._id) {
+          return $q.resolve();
+        }
+        return $http.put('/jobs/' + job._id, job).then(function() {  });
+    };
 
     this.deleteJob = function(id) {
         if (!id) {
@@ -64,22 +77,12 @@ angular.module('jobApp')
         return $http.delete('/jobs/' + id).then(function() {  });
     };
 
-
-    this.updateJob = function(job) {
-        
-        if (!job._id) {
-          return $q.resolve();
-        }
-        return $http.put('/jobs/' + job._id, job).then(function() {  });
-    };
-
-
 })
 
 .filter('capitalizeFirst', function () {
     return function (str) {
         str = str || '';
-        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     };
 })
 

@@ -10,5 +10,6 @@ angular.module('jobApp')
     	restrict: 'E',
         templateUrl: 'directives/addjobmodal.html',
         replace: true,
+        controller: 'mainController'
     }
 });
