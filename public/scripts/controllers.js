@@ -51,7 +51,7 @@ angular.module('jobApp')
                 $scope.successAddAlert();
                 $route.reload();
             }); 
-        } else return
+        } else return;
     };
 
     // PAGINATION
@@ -112,7 +112,7 @@ angular.module('jobApp')
     $scope.successEditAlert = function () {
         var message = '<strong>Success!</strong> Job post updated.';
         var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
-    }
+    };
 
     $scope.updateJob = function(validform, editedJob) {
         if (validform) {
@@ -121,7 +121,7 @@ angular.module('jobApp')
             dataService.updateJob(editedJob).then(function() {
                 $scope.successEditAlert();
             }); 
-        } else return
+        } else return;
     };
 
 
@@ -129,7 +129,7 @@ angular.module('jobApp')
     $scope.successDeleteAlert = function () {
         var message = '<strong>Success!</strong> Job post deleted.';
         var id = Flash.create('success', message, 2000, {class: 'custom-class', id: 'custom-id'}, true);
-    }
+    };
 
     $scope.deleteJob = function(id) {
         dataService.deleteJob(id).then(function() {

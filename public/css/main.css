@@ -1,7 +1,5 @@
 /*LANDING PAGE*/
 
-
-
 #bkgrd {
 	margin-top: -20px; 
 	color: rgb(15, 146, 205);
@@ -214,7 +212,7 @@ form .ng-invalid:not(.ng-untouched) {
 
 
 
-// MEDIA QUERIES
+/* MEDIA QUERIES */
 
 @media (min-width: 768px) { 
 	.nav>li {

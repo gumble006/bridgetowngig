@@ -6,7 +6,7 @@ angular.module('jobApp')
 
 
 // ROUTES
-.config(function ($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
     
     $routeProvider
     
@@ -34,4 +34,4 @@ angular.module('jobApp')
     })
 
     
-});
+}]);

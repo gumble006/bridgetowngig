@@ -9,9 +9,11 @@ module.exports = {
     },
     output: {
         path: __dirname + '/public',
-        filename: 'bridgetowngig.bundle.js'
+        filename: 'bridgetowngig.bundle.min.js'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.js")
+        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.min.js"),
+        new webpack.optimize.UglifyJsPlugin({})
     ]
 };
+

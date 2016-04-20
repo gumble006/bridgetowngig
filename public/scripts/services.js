@@ -44,7 +44,7 @@ angular.module('jobApp')
 
 })
 
-.service('dataService', function($http, $q) {
+.service('dataService', ['$http', '$q', function($http, $q) {
 
     this.jobs;
 
@@ -77,7 +77,7 @@ angular.module('jobApp')
         return $http.delete('/jobs/' + id).then(function() {  });
     };
 
-})
+}])
 
 .filter('capitalizeFirst', function () {
     return function (str) {
